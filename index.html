@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Jogo da velha</title>
+  </head>
+  <body>
+    <h1 class="menu-title">Jogo da velha</h1>
+    <div class="menu">
+      <button class="menu-button" id="local" onclick="hide(menu, this.id)">
+        Jogo Local
+      </button>
+      <button class="menu-button" id="computador" onclick="hide(menu, this.id)">
+        Contra Computador
+      </button>
+    </div>
+    <div class="game">
+      <h2 class="game-result"></h2>
+      <div class="game-board">
+        <button class="game-button" data-index="0"></button>
+        <button class="game-button" data-index="1"></button>
+        <button class="game-button" data-index="2"></button>
+        <button class="game-button" data-index="3"></button>
+        <button class="game-button" data-index="4"></button>
+        <button class="game-button" data-index="5"></button>
+        <button class="game-button" data-index="6"></button>
+        <button class="game-button" data-index="7"></button>
+        <button class="game-button" data-index="8"></button>
+      </div>
+      <h2 class="current-player"></h2>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
