@@ -31,7 +31,7 @@ function makeMove(button) {
   let dataIndex = button.dataset.index;
   switch (currentPlayer) {
     case "o":
-      while (board[dataIndex] == "") {
+      if (board[dataIndex] == "") {
         console.log("o");
         board[dataIndex] = "o";
         button.textContent = "O";
@@ -39,7 +39,7 @@ function makeMove(button) {
       }
       break;
     case "x":
-      while (board[dataIndex] == "") {
+      if (board[dataIndex] == "") {
         console.log("x");
         board[dataIndex] = "x";
         button.textContent = "X";
@@ -51,12 +51,11 @@ function makeMove(button) {
   currentPlayerDisplay.innerHTML =
     "Jogador atual: " + currentPlayer.toUpperCase();
 
-  let winner = checkWinner();
+  let winner = checkGameState(board);
 
   if (winner) {
     currentPlayer = "";
     currentPlayerDisplay.innerHTML = "";
-    gameResult.innerHTML = "O vencedor é " + winner.toUpperCase();
   }
 }
 
@@ -73,20 +72,43 @@ const winningCombinations = [
   [2, 4, 6],
 ];
 
-function checkWinner() {
+function checkGameState(board) {
   let emptySpaces = 0;
   for (let value of board) {
     if (value === "") {
       emptySpaces++;
     }
   }
+
+  let winner = checkWinner(board);
+  if (winner) {
+    gameResult.innerHTML = "O vencedor é " + winner.toUpperCase();
+    return winner;
+  }
+  if (emptySpaces === 0) {
+    gameResult.innerHTML = "Empate";
+    return "end";
+  }
+  return "continue";
+}
+
+function checkWinner(board) {
   for (let combination of winningCombinations) {
     const [a, b, c] = combination;
     if (board[a] != "" && board[a] === board[b] && board[a] === board[c]) {
       return board[a];
     }
   }
-  if (emptySpaces === 0) {
-    return "Nenhum ganhador";
-  }
+}
+
+function miniMax(board) {
+  // 1. Verificar se o estado atual já terminou
+  // 2. Encontrar todas as jogadas possíveis
+  // 3. Para cada jogada possível:
+  // simular a jogada
+  // simular a melhor resposta do adversário
+  // (chamar minimax novamente)
+  // desfazer a jogada
+  // 4. Comparar os resultados das simulações
+  // 5. Retornar o melhor resultado
 }
