@@ -89,7 +89,7 @@ function checkGameState(board) {
     gameResult.innerHTML = "Empate";
     return "end";
   }
-  return "continue";
+  return null;
 }
 
 function checkWinner(board) {
